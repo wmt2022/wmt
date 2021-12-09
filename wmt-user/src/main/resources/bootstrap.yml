@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: user-service
+#  cloud:
+#    nacos:
+#      config:
+#        ext‐config[0]:
+#          data‐id: jz-common.yml
+#          group: jz-common
+#          refresh: true
+#        ext‐config[1]:
+#          data‐id: jz-redis.yml
+#          group: jz-common
+#          refresh: true
+#        ext‐config[2]:
+#          data‐id: jz-jwt.yml
+#          group: jz-common
+#          refresh: true
+#        ext‐config[3]:
+#          data‐id: jz-common.yml
+#          group: jz-common
+#          refresh: true
+#  profiles:
+#    active: dev
+

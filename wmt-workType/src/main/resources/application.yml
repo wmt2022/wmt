@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    include: [common]
+  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/wmt?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123456
+  main:
+    #允许存在多个Feign调用相同Service的接口
+    allow-bean-definition-overriding: true
+server:
+  port: 8083
+
+
+
+

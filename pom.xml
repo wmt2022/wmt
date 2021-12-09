@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wmt.jz</groupId>
+    <artifactId>jz-cloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <modules>
+        <module>wmt-user</module>
+        <module>wmt-common</module>
+        <module>wmt-gateway</module>
+        <module>wmt-workType</module>
+        <module>eureka-server</module>
+    </modules>
+
+    <name>my-cloud</name>
+    <description>王明涛cloud2022</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <openfeign.version>2.2.0.RELEASE</openfeign.version>
+        <nacos.version>0.2.2.RELEASE</nacos.version>
+        <swagger.version>2.7.0</swagger.version>
+        <maven.test.skip>true</maven.test.skip>
+        <mysql.version>8.0.11</mysql.version>
+<!--        <mysql.version>6.0.4</mysql.version>-->
+        <mybatis.version>1.3.2</mybatis.version>
+        <tkmybatis.starter.version>2.1.5</tkmybatis.starter.version>
+        <tkmybatis.mapper.version>4.1.5</tkmybatis.mapper.version>
+        <tkmybatis.generator.version>1.1.5</tkmybatis.generator.version>
+        <freemarker.version>2.3.28</freemarker.version>
+        <mybatis-generator.version>1.3.7</mybatis-generator.version>
+        <mybatis-dynamic-sql.version>1.1.4</mybatis-dynamic-sql.version>
+        <pagehelper.version>1.2.5</pagehelper.version>
+        <orderbyhelper.version>1.0.2</orderbyhelper.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <jjwt.version>0.10.6</jjwt.version>
+        <elasticsearch.version>6.2.2</elasticsearch.version>
+        <jest.version>6.3.1</jest.version>
+<!--        <redis.version>1.4.1.RELEASE</redis.version>-->
+<!--        <redisson.version>3.12.5</redisson.version>-->
+        <sharding.jdbc.version>3.0.0</sharding.jdbc.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <fastdfs-client.version>1.26.1-RELEASE</fastdfs-client.version>
+        <admin-starter-server.version>2.2.3</admin-starter-server.version>
+        <logstash.version>5.3</logstash.version>
+        <hutool.version>5.3.6</hutool.version>
+        <jna.version>5.5.0</jna.version>
+        <fastjson.version>1.2.72</fastjson.version>
+
+        <jz-common.version>1.0.0</jz-common.version>
+        <user-api.version>1.0.0</user-api.version>
+        <case-api.version>1.0.0</case-api.version>
+        <sdk-api.version>1.0.0</sdk-api.version>
+        <file-api.version>1.0.0</file-api.version>
+        <security-api.version>1.0.0</security-api.version>
+        <statistics-api.version>1.0.0</statistics-api.version>
+        <easypoi.version>4.2.0</easypoi.version>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--jz-cloud相关模块-->
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>jz-common</artifactId>
+                <version>${jz-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>user-api</artifactId>
+                <version>${user-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>cases-api</artifactId>
+                <version>${case-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>sdk-api</artifactId>
+                <version>${sdk-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>file-api</artifactId>
+                <version>${file-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>statistics-api</artifactId>
+                <version>${statistics-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zbgd.jz</groupId>
+                <artifactId>security-api</artifactId>
+                <version>${security-api.version}</version>
+            </dependency>
+
+            <!--在2.2.0.RELEASE里有一行注释描述，feign的SentinelContractHolder接口方法名parseAndValidatateMetadata拼写错误，
+          在2.2.2.RELEASE方法已修正了，即方法名发生了改变。
+          在spring-cloud-alibaba-sentinel中的SentinelContractHolder类，用到了该接口的这个方法
+          所以，要么降低SpringCloud版本，要么单独指定openfeign版本，否则启动报错
+          java.lang.AbstractMethodError:
+          com.alibaba.cloud.sentinel.feign.SentinelContractHolder.
+          parseAndValidateMetadata(Ljava/lang/Class;)Ljava/util/List
+          注意spring-cloud-openfeign-dependencies写在spring-cloud-dependencies前面，
+          因为dependency前面的优先生效。-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-openfeign-dependencies</artifactId>
+                <version>${openfeign.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <!-- springCloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <!--swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <!--swagger ui-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+
+            <!--集成SpringBoot Admin监控-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${admin-starter-server.version}</version>
+            </dependency>
+
+
+            <!--redis-->
+            <!--<dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-redis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>-->
+
+            <!--mysql驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!--tk.mybatis 封装了mybatis-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tkmybatis.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${tkmybatis.mapper.version}</version>
+            </dependency>
+            <!-- sharding jdbc依赖 -->
+            <dependency>
+                <groupId>io.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding.jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-namespace</artifactId>
+                <version>${sharding.jdbc.version}</version>
+            </dependency>
+
+
+            <!--分页助手启动器-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <!--排序助手启动器-->
+            <dependency>
+                <groupId>com.cuisongliu</groupId>
+                <artifactId>orderbyhelper-spring-boot-starter</artifactId>
+                <version>${orderbyhelper.version}</version>
+            </dependency>
+
+            <!--apache的通用工具包-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <scope>runtime</scope>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- MyBatis 生成器 -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator.version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+            </dependency>
+
+            <!--集成logstash-->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+            <!--hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--jna-->
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna-platform</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+
+            <!--fastJson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--easyPoi-->
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-base</artifactId>
+                <version>${easypoi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-annotation</artifactId>
+                <version>${easypoi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-web</artifactId>
+                <version>${easypoi.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 多环境配置方案 -->
+    <profiles>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+            <!-- 默认开启这个配置 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <profileActive>uat</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <profileActive>pro</profileActive>
+            </properties>
+        </profile>
+    </profiles>
+</project>

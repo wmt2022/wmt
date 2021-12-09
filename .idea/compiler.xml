@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wmt-gateway" />
+        <module name="wmt-user" />
+        <module name="wmt-common" />
+        <module name="wmt-workType" />
+        <module name="eureka-server" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-server" options="-parameters" />
+      <module name="wmt-common" options="-parameters" />
+      <module name="wmt-gateway" options="-parameters" />
+      <module name="wmt-user" options="-parameters" />
+      <module name="wmt-workType" options="-parameters" />
+    </option>
+  </component>
+</project>

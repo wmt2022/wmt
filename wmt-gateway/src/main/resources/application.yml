@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: jz-gateway
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: jzcloud.jz-zbgd.com:8848
+#        file-extension: yml
+#        group: ${spring.application.name}
+#        namespace: zbgd-jz-cloud-2020
+  main:
+    allow-bean-definition-overriding: true
